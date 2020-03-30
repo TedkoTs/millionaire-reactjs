@@ -1,0 +1,28 @@
+.answers-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 25px;
+  box-shadow: 2px 5px 20px gray;
+  border-radius: 10px;
+  width: auto;
+  margin: auto;
+  margin-top: 100px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+}
+
+.single-answer {
+  position: relative;
+  padding: 10px;
+  background-color: rgb(250, 151, 37);
+  margin: 5px;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+}
