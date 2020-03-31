@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
+import { GameContext } from "../../Context/GameContext";
+import SpinnerComp from '../../Components/Spinner/Spinner';
+
 
 const Answers = () => {
-  return (
-    <div className="answers-container">
-      <div className="single-answer">answer 1</div>
-      <div className="single-answer">answer 2</div>
-      <div className="single-answer">answer 3</div>
-      <div className="single-answer">answer 4</div>
-    </div>
-  );
+  const { questions, progress, checkAnswer } = useContext(GameContext);
+  const [answer, setAnswer] = useState("");
+
+  console.log(questions[progress].correctAnswer);
+  
+
+  if (questions.length > 0) {
+    return (
+      <div className="answers-container">
+        {questions[progress].allAnswers.map((answer, index) => {
+          return (
+            <div
+              className="single-answer"
+              key={index}
+              onClick={e => {
+                setAnswer(e.target.innerText);
+                checkAnswer(answer);
+              }}
+            >
+              {answer}
+            </div>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return  <SpinnerComp />
+  }
 };
 
 export default Answers;

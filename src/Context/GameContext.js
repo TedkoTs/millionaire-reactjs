@@ -7,6 +7,7 @@ const GameContext = createContext();
 const GameProvider = ({ children }) => {
   const [questions, SetQuestions] = useState([]);
   const [progress, SetProgress] = useState(0);
+  const [newGame, SetNewGame] = useState(false);
 
   useEffect(() => {
     let questionsArray = [];
@@ -70,13 +71,27 @@ const GameProvider = ({ children }) => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [SetQuestions, newGame]);
+
+  const checkAnswer = answer => {
+    if (answer === questions[progress].correctAnswer) {
+      console.log("correct");
+      SetProgress(progress + 1);
+    } else {
+      console.log("Game Over");
+      SetProgress(0);
+      SetNewGame(!newGame);
+      SetQuestions([]);
+    }
+  };
 
   return (
     <GameContext.Provider
       value={{
         questions,
-        progress
+        progress,
+        SetProgress,
+        checkAnswer
       }}
     >
       {children}
