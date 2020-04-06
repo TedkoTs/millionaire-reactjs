@@ -8,6 +8,7 @@ const GameProvider = ({ children }) => {
   const [questions, SetQuestions] = useState([]);
   const [progress, SetProgress] = useState(0);
   const [newGame, SetNewGame] = useState(false);
+  const [isGameOver, SetIsGameOver] = useState(false);
 
   useEffect(() => {
     let questionsArray = [];
@@ -71,17 +72,13 @@ const GameProvider = ({ children }) => {
       .catch(err => {
         console.log(err);
       });
-  }, [SetQuestions, newGame]);
+  }, [newGame]);
 
   const checkAnswer = answer => {
     if (answer === questions[progress].correctAnswer) {
-      console.log("correct");
       SetProgress(progress + 1);
     } else {
-      console.log("Game Over");
-      SetProgress(0);
-      SetNewGame(!newGame);
-      SetQuestions([]);
+      SetIsGameOver(true);
     }
   };
 
@@ -91,7 +88,12 @@ const GameProvider = ({ children }) => {
         questions,
         progress,
         SetProgress,
-        checkAnswer
+        checkAnswer,
+        SetNewGame,
+        SetQuestions,
+        newGame,
+        isGameOver,
+        SetIsGameOver
       }}
     >
       {children}

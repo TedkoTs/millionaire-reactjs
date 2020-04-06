@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { GameContext } from "../../Context/GameContext";
-import SpinnerComp from '../../Components/Spinner/Spinner';
-
+import SpinnerComp from "../../Components/Spinner/Spinner";
 
 const Answers = () => {
   const { questions, progress, checkAnswer } = useContext(GameContext);
-  const [answer, setAnswer] = useState("");
 
-  console.log(questions[progress].correctAnswer);
-  
+  console.log(`The correct answer is ${questions[progress].correctAnswer}`);
 
   if (questions.length > 0) {
     return (
@@ -20,8 +17,8 @@ const Answers = () => {
               className="single-answer"
               key={index}
               onClick={e => {
-                setAnswer(e.target.innerText);
-                checkAnswer(answer);
+                let clickedAnswer = e.target.innerText;
+                checkAnswer(clickedAnswer);
               }}
             >
               {answer}
@@ -31,7 +28,7 @@ const Answers = () => {
       </div>
     );
   } else {
-    return  <SpinnerComp />
+    return <SpinnerComp />;
   }
 };
 

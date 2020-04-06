@@ -1,0 +1,12 @@
+.score-board {
+    position: relative;
+    height: 700px;
+  }
+  
+  .score {
+    position: absolute;
+    width: 1024px;
+    font-size: 3em;
+    top: 250px;
+    text-align: center;
+  }

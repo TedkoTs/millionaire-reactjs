@@ -7,7 +7,7 @@ const ProgressBar = () => {
 
   return (
     <div>
-      <div className="text-center">{progress} of 15</div>
+      <div className="text-center">Game progress {progress} of 15</div>
       <Progress striped color="success" value={progress} max={15} />
     </div>
   );
